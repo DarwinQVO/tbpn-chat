@@ -1,0 +1,19 @@
+{
+  "functions": {
+    "source": "functions"
+  },
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      { "source": "/chat", "function": "chat" },
+      { "source": "/ingestSingle", "function": "ingestSingle" },
+      { "source": "/ingestChannel", "function": "ingestChannel" },
+      { "source": "/ingestPlaylist", "function": "ingestPlaylist" }
+    ]
+  }
+}
