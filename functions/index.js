@@ -3,9 +3,9 @@ const admin = require('firebase-admin');
 admin.initializeApp();
 const db = admin.firestore();
 
-// Chat de prueba
+// Basic echo chat
 exports.chat = functions.https.onRequest((req, res) => {
-  res.send(`Hola, funciona: ${req.query.query || ''}`);
+  res.send(req.query.query || '');
 });
 
 // Crea job en Firestore
