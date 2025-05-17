@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+    <style>
+        body {
+            background-color: #222;
+            color: #eee;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 50px;
+        }
+        #output {
+            margin-top: 20px;
+            width: 80%;
+            max-width: 600px;
+            background-color: #333;
+            padding: 10px;
+            border-radius: 4px;
+            min-height: 100px;
+        }
+        #query {
+            width: 80%;
+            max-width: 600px;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #555;
+            background-color: #444;
+            color: #fff;
+        }
+        #send {
+            margin-top: 10px;
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: none;
+            background-color: #555;
+            color: #fff;
+            cursor: pointer;
+        }
+        #send:hover {
+            background-color: #666;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="query" placeholder="Escribe tu pregunta" />
+    <button id="send">Enviar</button>
+    <div id="output"></div>
+
+    <script>
+        document.getElementById('send').addEventListener('click', () => {
+            const text = document.getElementById('query').value;
+            fetch('/chat?query=' + encodeURIComponent(text))
+                .then(res => res.text())
+                .then(data => {
+                    document.getElementById('output').textContent = data;
+                })
+                .catch(err => {
+                    document.getElementById('output').textContent = 'Error: ' + err;
+                });
+        });
+    </script>
+</body>
+</html>
